@@ -1,0 +1,25 @@
+{
+    "name": "oodle/urlify",
+    "type": "library",
+    "description": "urlify - a library for creating url-safe slugs from text",
+    "license": "MIT",
+    "keywords": ["seo", "urlification", "slugify", "slug", "urlify", "url"],
+    "authors": [
+	{
+	    "name": "Matthew J. Mucklo",
+	    "email": "mmucklo@corp.oodle.com"
+	}
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "require": {
+        "php": ">=5.3.17"
+    },
+    "autoload": {
+        "psr-0": {
+	    "Urlify": "src/"
+	}
+    }
+}
+
