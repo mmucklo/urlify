@@ -11,7 +11,6 @@ class UrlifyTest extends TestCase
     public function testUrlify($result, $expect)
     {
         $this->assertEquals($expect, Urlify::urlify($result, '-', 'and'));
-        //$this->assertEquals(str_replace('-', '+', $result), Urlify::urlify($expect, '+', 'and'));
     }
 
     public function stringDataProvider()
