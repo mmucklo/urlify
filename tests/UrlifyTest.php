@@ -21,19 +21,19 @@ class UrlifyTest extends TestCase
             array("", '-'),
             array("_+0990-0&*(&*(*)(&&*)(&*)(32@#%", '-0990-0-and-32-'),
             array(10000, '10000'),
-            array('kra�t', 'krai-t'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("�", 'i-'),
-            array("��������������������������������������������������������������", strtolower("i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-i-"))
+            array('kraüt', 'kraut'),
+            array("ò", 'o'),
+            array("ó", 'o'),
+            array("ô", 'o'),
+            array("õ", 'o'),
+            array("ö", 'o'),
+            array("ø", 'o'),
+            array("ù", 'u'),
+            array("ú", 'u'),
+            array("û", 'u'),
+            array("ü", 'u'),
+            array("ý", 'y'),
+            array("ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ", strtolower("AAAAAAAECEEEEIIIIETHNOOOOOOUUUUYTHORNszaaaaaaaeceeeeiiiiethnoooooouuuuythorny"))
         );
     }
 }
