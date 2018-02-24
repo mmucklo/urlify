@@ -1,41 +1,39 @@
 <?php
 
-require_once(__DIR__ . '/../vendor/autoload.php');
-require_once(__DIR__ . '/../src/Urlify/Urlify.php');
-
 use Urlify\Urlify;
+use PHPUnit\Framework\TestCase;
 
-class UrlifyTest extends PHPUnit_Framework_TestCase
+class UrlifyTest extends TestCase
 {
-    public function testUrlify()
+    /**
+     * @dataProvider stringDataProvider
+     */
+    public function testUrlify($result, $expect)
     {
-        $urltests = array("This Test's Apostrophe" => 'this-tests-apostrophe',
-                          "@#$%@##^@ @#%@#$%@#$%@#$%@#$%" => '-',
-                          "" => '-',
-                          "_+0990-0&*(&*(*)(&&*)(&*)(32@#%" => '-0990-0-and-32-',
-                          10000 => '10000',
-                          'kra¸t' => 'kraut',
-                          "Ú" => 'o',
-                          "Û" => 'o',
-                          "Ù" => 'o',
-                          "ı" => 'o',
-                          "ˆ" => 'o',
-                          "¯" => 'o',
-                          "˘" => 'u',
-                          "˙" => 'u',
-                          "˚" => 'u',
-                          "¸" => 'u',
-                          "˝" => 'y',
-                          "¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷ÿŸ⁄€‹›ﬁﬂ‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ¯˘˙˚¸˝˛ˇ" => strtolower("AAAAAAAECEEEEIIIIETHNOOOOOOUUUUYTHORNszaaaaaaaeceeeeiiiiethnoooooouuuuythorny")
-			  );
-	foreach ($urltests as $key => $value)
-	{
-            print "Testing $key urlifies to: $value\n";
-            $this->assertEquals($value, Urlify::urlify($key, '-', 'and'));
-            print "Testing $key urlifies with '+' to: " . str_replace('-', '+', $value) . "\n";
-            $this->assertEquals(str_replace('-', '+', $value), Urlify::urlify($key, '+', 'and'));
-	}
+        $this->assertEquals($expect, Urlify::urlify($result, '-', 'and'));
+    }
 
-	print "\n";
+    public function stringDataProvider()
+    {
+        return array(
+            array("This Test's Apostrophe", 'this-tests-apostrophe'),
+            array("@#$%@##^@ @#%@#$%@#$%@#$%@#$%", '-'),
+            array("", '-'),
+            array("_+0990-0&*(&*(*)(&&*)(&*)(32@#%", '-0990-0-and-32-'),
+            array(10000, '10000'),
+            array('kra√ºt', 'kraut'),
+            array("√≤", 'o'),
+            array("√≥", 'o'),
+            array("√¥", 'o'),
+            array("√µ", 'o'),
+            array("√∂", 'o'),
+            array("√∏", 'o'),
+            array("√π", 'u'),
+            array("√∫", 'u'),
+            array("√ª", 'u'),
+            array("√º", 'u'),
+            array("√Ω", 'y'),
+            array("√Ä√Å√Ç√É√Ñ√Ö√Ü√á√à√â√ä√ã√å√ç√é√è√ê√ë√í√ì√î√ï√ñ√ò√ô√ö√õ√ú√ù√û√ü√†√°√¢√£√§√•√¶√ß√®√©√™√´√¨√≠√Æ√Ø√∞√±√≤√≥√¥√µ√∂√∏√π√∫√ª√º√Ω√æ√ø", strtolower("AAAAAAAECEEEEIIIIETHNOOOOOOUUUUYTHORNszaaaaaaaeceeeeiiiiethnoooooouuuuythorny"))
+        );
     }
 }

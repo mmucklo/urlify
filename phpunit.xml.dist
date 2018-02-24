@@ -9,7 +9,7 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="autoload.php.dist"
+         bootstrap="vendor/autoload.php"
 >
     <php>
         <ini name="intl.default_locale" value="en"/>
@@ -32,9 +32,6 @@
     <filter>
         <whitelist>
             <directory>./src/</directory>
-            <exclude>
-                <directory>./tests/</directory>
-            </exclude>
         </whitelist>
     </filter>
 </phpunit>
